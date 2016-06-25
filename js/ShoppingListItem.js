@@ -4,7 +4,7 @@ function ShoppingListItem(name, description) {
   var is_done = false;
 
   function _check (){
-    is_done = true;
+    this.is_done = true;
   }
 
   function _unheck (){
@@ -15,7 +15,7 @@ function ShoppingListItem(name, description) {
   name: this._name,
   description: this._description,
   is_done: is_done,
-  check: _check,
+  check: _check
   // uncheck: _uncheck
   };
 }

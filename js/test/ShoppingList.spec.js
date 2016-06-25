@@ -37,10 +37,11 @@ describe('ShoppingListItem', function(){
   it(`should have a method 'check' available on a new Shopping List Item object`, function () {
     (shoppinglistitem.check).should.be.a.function;
   });
-  // it(`the 'check' method should set 'is_done' to 'true'`, function () {
-  //   shoppinglistitem.check();
-  //   shoppinglistitem.is_done.should.be.equal(true);
-  // });
+
+  it(`the 'check' method should set 'is_done' to 'true'`, function () {
+    shoppinglistitem.check();
+    shoppinglistitem.is_done.should.be.equal(true);
+  });
 
   //   //end of shoppingListItem method tests
   // });
