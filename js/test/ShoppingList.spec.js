@@ -9,6 +9,7 @@ chai.should();
 describe('ShoppingListItem', function(){
 
   var shoppinglistitem;
+
   beforeEach(function() {
     shoppinglistitem = new ShoppingListItem('Fish','A lovely but dangerous goldfish.');
   });
@@ -17,13 +18,13 @@ describe('ShoppingListItem', function(){
     ShoppingListItem.should.be.a.function;
   });
 
-  // it('should have a property name', function() {
-  //   shoppinglistitem.name.should.be.equal('Fish');
-  // });
+  it('should have a property name', function() {
+    shoppinglistitem.name.should.be.equal('Fish');
+  });
 
-  // it('should have a property description', function() {
-  //   shoppinglistitem.description.should.be.equal('A lovely but dangerous goldfish.');
-  // });
+  it('should have a property description', function() {
+    shoppinglistitem.description.should.be.equal('A lovely but dangerous goldfish.');
+  });
 
 });
   //ShoppingListItem has a property named `name`
