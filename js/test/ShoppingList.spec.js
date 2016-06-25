@@ -34,6 +34,8 @@ describe('ShoppingListItem', function(){
     shoppinglistitem.is_done.should.be.equal(false);
   });
 
+  //start of shoppingListItem method tests
+
   it(`should have a method 'check' available on a new Shopping List Item object`, function () {
     (shoppinglistitem.check).should.be.a.function;
   });
@@ -61,12 +63,14 @@ describe('ShoppingListItem', function(){
   it(`the'render' method should return an HTML-formatted string wrapped in quotes`, function () {
     var renderedString = shoppinglistitem.render();
     renderedString.should.be.a.string;
+    (renderedString.startsWith(`"<li class`)).should.be.equal(true);
+    (renderedString.endsWith(`/li>"`)).should.be.equal(true);
+    (renderedString.includes('<span>Fish</span>')).should.be.equal(true);
+    (renderedString.includes(`<span>A lovely but dangerous goldfish.</span>`)).should.be.equal(true);
+    (renderedString.includes(`"completed_false"`)).should.be.equal(true);
   });
+  //end of shoppingListItem method tests
 
-
-
-  //   //end of shoppingListItem method tests
-  // });
 
 //end of shoppingListItem tests
 });
