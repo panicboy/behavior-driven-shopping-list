@@ -2,10 +2,10 @@ function ShoppingListItem(name, description) {
   this._name = name;
   this._description = description;
   var is_done = false;
-  var renderString  = `<li class="completed_is_done">
+  var renderString  = `"<li class="completed_is_done">
   <span>_name_</span>
   <span>_description_</span>
-</li>`;
+</li>"`;
 
 
   function _check (){
@@ -17,7 +17,7 @@ function ShoppingListItem(name, description) {
   }
 
 function _render(){
-  var itemString = testString.renderString('is_done',is_done);
+  var itemString = renderString.replace('is_done',is_done);
   itemString = itemString.replace('_name_',this._name);
   itemString = itemString.replace('_description_',this._description);
   return itemString;
@@ -37,4 +37,4 @@ function _render(){
 // shoppinglistitem.check();
 //     shoppinglistitem.is_done.should.be.equal(true);
 
-// 9 tests of ShoppingListItem written & passing
+// 10 tests of ShoppingListItem written & passing. 'render' method added. To do: tests for 'render'

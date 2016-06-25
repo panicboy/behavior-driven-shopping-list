@@ -58,6 +58,13 @@ describe('ShoppingListItem', function(){
     (shoppinglistitem.render).should.be.a.function;
   });
 
+  it(`the'render' method should return an HTML-formatted string wrapped in quotes`, function () {
+    var renderedString = shoppinglistitem.render();
+    renderedString.should.be.a.string;
+  });
+
+
+
   //   //end of shoppingListItem method tests
   // });
 
