@@ -43,6 +43,10 @@ describe('ShoppingListItem', function(){
     shoppinglistitem.is_done.should.be.equal(true);
   });
 
+  it(`should have a method 'uncheck' available on a new Shopping List Item object`, function () {
+    (shoppinglistitem.uncheck).should.be.a.function;
+  });
+
   //   //end of shoppingListItem method tests
   // });
 

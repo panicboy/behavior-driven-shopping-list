@@ -7,16 +7,18 @@ function ShoppingListItem(name, description) {
     this.is_done = true;
   }
 
-  function _unheck (){
-    is_done = false;
+  function _uncheck (){
+    this.is_done = false;
   }
 
   return {
   name: this._name,
   description: this._description,
   is_done: is_done,
-  check: _check
-  // uncheck: _uncheck
+  check: _check,
+  uncheck: _uncheck
   };
 }
 
+// shoppinglistitem.check();
+//     shoppinglistitem.is_done.should.be.equal(true);
