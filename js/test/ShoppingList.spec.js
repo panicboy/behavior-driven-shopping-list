@@ -9,9 +9,11 @@ chai.should();
 describe('ShoppingListItem', function(){
 
   var shoppinglistitem;
+  var shoppinglistitem2;
 
   beforeEach(function() {
     shoppinglistitem = new ShoppingListItem('Fish','A lovely but dangerous goldfish.');
+    shoppinglistitem2 = new ShoppingListItem('Dog',`Says 'Woof!'`);
   });
 
   it('should be a Class definition', function() {
@@ -69,10 +71,27 @@ describe('ShoppingListItem', function(){
     (renderedString.includes(`<span>A lovely but dangerous goldfish.</span>`)).should.be.equal(true);
     (renderedString.includes(`"completed_false"`)).should.be.equal(true);
   });
+
+  it(`a different ShoppingListItem instance should have a property 'name' with a distinct value`, function() {
+    shoppinglistitem.name.should.be.equal('Fish');
+    shoppinglistitem2.name.should.be.equal('Dog');
+  });
+
+  it(`a different ShoppingListItem instance should have a property 'description' with a distinct value`, function() {
+    shoppinglistitem.description.should.be.equal('A lovely but dangerous goldfish.');
+    shoppinglistitem2.description.should.be.equal(`Says 'Woof!'`);
+  });
+
+  it(`the'render' method for a different ShoppingListItem instance should return a different HTML-formatted string wrapped in quotes`, function () {
+    var renderedString = shoppinglistitem.render();
+    var renderedString2 = shoppinglistitem2.render();
+    renderedString2.should.be.a.string;
+    (renderedString2.startsWith(`"<li class`)).should.be.equal(true);
+    (renderedString2.endsWith(`/li>"`)).should.be.equal(true);
+    (renderedString2.includes('<span>Dog</span>')).should.be.equal(true);
+    (renderedString2.includes(`<span>Says 'Woof!'</span>`)).should.be.equal(true);
+    (renderedString == renderedString2).should.be.equal(false);
+  });
   //end of shoppingListItem method tests
-
-
 //end of shoppingListItem tests
 });
-  //ShoppingListItem has a constructor method that accepts 2 arguments, `name` and `description`
-    //the constructor method sets the new instances `name` and `description` properties using the arguments passed in
