@@ -54,6 +54,10 @@ describe('ShoppingListItem', function(){
     shoppinglistitem.is_done.should.be.equal(false);
   });
 
+  it(`should have a method 'render' available on a new Shopping List Item object`, function () {
+    (shoppinglistitem.render).should.be.a.function;
+  });
+
   //   //end of shoppingListItem method tests
   // });
 
