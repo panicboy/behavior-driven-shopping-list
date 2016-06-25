@@ -47,6 +47,13 @@ describe('ShoppingListItem', function(){
     (shoppinglistitem.uncheck).should.be.a.function;
   });
 
+   it(`the 'uncheck' method should set 'is_done' to 'false'`, function () {
+    shoppinglistitem.check();
+    shoppinglistitem.is_done.should.be.equal(true);
+    shoppinglistitem.uncheck();
+    shoppinglistitem.is_done.should.be.equal(false);
+  });
+
   //   //end of shoppingListItem method tests
   // });
 
