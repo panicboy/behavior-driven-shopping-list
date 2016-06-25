@@ -15,7 +15,7 @@ function ShoppingListItem(name, description) {
   name: this._name,
   description: this._description,
   is_done: is_done,
-  // check: _check,
+  check: _check,
   // uncheck: _uncheck
   };
 }

@@ -14,7 +14,7 @@ describe('ShoppingListItem', function(){
     shoppinglistitem = new ShoppingListItem('Fish','A lovely but dangerous goldfish.');
   });
 
-  it(`should be a Class definition`, function() {
+  it('should be a Class definition', function() {
     ShoppingListItem.should.be.a.function;
   });
 
@@ -34,10 +34,12 @@ describe('ShoppingListItem', function(){
     shoppinglistitem.is_done.should.be.equal(false);
   });
 
-  // describe('Shopping List Item methods', function() {
-  //   describe('#check', function() {
-
-  //   }
+  it(`should have a method 'check' available on a new Shopping List Item object`, function () {
+    (shoppinglistitem.check).should.be.a.function;
+  });
+  // it(`the 'check' method should set 'is_done' to 'true'`, function () {
+  //   shoppinglistitem.check();
+  //   shoppinglistitem.is_done.should.be.equal(true);
   // });
 
   //   //end of shoppingListItem method tests
