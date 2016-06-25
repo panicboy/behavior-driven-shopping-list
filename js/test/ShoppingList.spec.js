@@ -82,10 +82,11 @@ describe('ShoppingListItem', function(){
     shoppinglistitem2.description.should.be.equal(`Says 'Woof!'`);
   });
 
-  it(`the'render' method for a different ShoppingListItem instance should return a different HTML-formatted string wrapped in quotes`, function () {
+  it(`a different ShoppingListItem instance should render a different HTML-formatted string`, function () {
     var renderedString = shoppinglistitem.render();
     var renderedString2 = shoppinglistitem2.render();
     renderedString2.should.be.a.string;
+    (renderedString.includes('<span>Fish</span>')).should.be.equal(true);
     (renderedString2.startsWith(`"<li class`)).should.be.equal(true);
     (renderedString2.endsWith(`/li>"`)).should.be.equal(true);
     (renderedString2.includes('<span>Dog</span>')).should.be.equal(true);
