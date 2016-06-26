@@ -72,6 +72,11 @@ describe('ShoppingListItem', function(){
     (renderedString.includes(`"completed_false"`)).should.be.equal(true);
   });
 
+  it(`the'render' method should return a multiline string`, function () {
+    var renderedString = shoppinglistitem.render();
+    (renderedString.split("\n").length).should.be.equal(4);
+  });
+
   it(`a different ShoppingListItem instance should have a property 'name' with a distinct value`, function() {
     shoppinglistitem.name.should.be.equal('Fish');
     shoppinglistitem2.name.should.be.equal('Dog');
@@ -95,4 +100,51 @@ describe('ShoppingListItem', function(){
   });
   //end of shoppingListItem method tests
 //end of shoppingListItem tests
+});
+
+describe('ShoppingList', function(){
+
+  var shoppinglist;
+  var shoppinglist2;
+  var shoppinglistitem;
+  var shoppinglistitem2;
+
+  beforeEach(function() {
+  shoppinglist = new ShoppingList();
+  });
+
+  it('should be a Class definition', function() {
+    ShoppingList.should.be.a.function;
+  });
+
+  it('should return an object literal when invoked', function () {
+    (ShoppingList()).should.be.an('object');
+  });
+
+  it(`should have a property 'items'`, function() {
+    expect(shoppinglist.items).to.exist;
+  });
+
+  it(`'items' should be an array`, function() {
+    (shoppinglist.items).should.be.instanceof(Array);
+  });
+
+  it(`'items' should be empty`, function() {
+    (shoppinglist.items).should.be.empty;
+  });
+
+  it(`it should have a method named 'addItem'`, function() {
+    (shoppinglist.addItem).should.be.a.function;
+  });
+
+  it(`passing the addItem method a ShoppingListItem object should add that object to the items array`, function() {
+    var testListItem = new ShoppingListItem('Cat', 'Purrs a lot, chases mice');
+    shoppinglist.addItem(testListItem);
+    (shoppinglist.items).indexOf(testListItem).should.not.be.equal(-1);
+  });
+
+
+
+
+
 });

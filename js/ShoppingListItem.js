@@ -7,7 +7,6 @@ function ShoppingListItem(name, description) {
   <span>_description_</span>
 </li>"`;
 
-
   function _check (){
     this.is_done = true;
   }
@@ -18,26 +17,17 @@ function ShoppingListItem(name, description) {
 
 function _render(){
   var itemString = renderString.replace('is_done',is_done);
-  console.log('itemString: ', itemString);
   itemString = itemString.replace('_name_',this.name);
-  console.log('itemString after 1st replace: ', itemString);
   itemString = itemString.replace('_description_',this.description);
-  console.log('itemString after 2nd replace: ', itemString);
   return itemString;
 }
 
-
   return {
-  name: this._name,
-  description: this._description,
-  is_done: is_done,
-  check: _check,
-  uncheck: _uncheck,
-  render: _render
+    name: this._name,
+    description: this._description,
+    is_done: is_done,
+    check: _check,
+    uncheck: _uncheck,
+    render: _render
   };
 }
-
-// shoppinglistitem.check();
-//     shoppinglistitem.is_done.should.be.equal(true);
-
-// 11 tests of ShoppingListItem written & passing. first 'render' test passed.
