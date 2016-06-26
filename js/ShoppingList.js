@@ -19,14 +19,20 @@ function ShoppingList(){
     return propertyMatch;
   }
 
-
   function _removeItem(theItem){
-
+    if(arguments.length === 0 && this._items.length > 0) return this._items.pop();
+    if(!isShoppingListItem(theItem)) {
+      throw Error("not a ShoppingListItem.");
+    } else {
+      var itemIndex = this._items.indexOf(theItem);
+      if(itemIndex >= 0) return this._items.splice(itemIndex,1);
+    }
   }
 
   return {
     items: this._items,
-    addItem: _addItem
+    addItem: _addItem,
+    removeItem: _removeItem
   };
 }
 

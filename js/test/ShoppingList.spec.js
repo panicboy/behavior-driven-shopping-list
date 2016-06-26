@@ -133,28 +133,39 @@ describe('ShoppingList', function(){
     (shoppinglist.items).should.be.empty;
   });
 
-  it(`it should have a method named 'addItem'`, function() {
-    (shoppinglist.addItem).should.be.a.function;
+  describe('addItem', function(){
+    beforeEach(function() {
+      shoppinglist3 = new ShoppingList();
+    });
+
+    it(`'ShoppingList' should have a method named 'addItem'`, function() {
+      (shoppinglist3.addItem).should.be.a.function;
+    });
+
+    it(`the 'addItem' method should accept a ShoppingListItem object and add it to the items array`, function() {
+      var testListItem = new ShoppingListItem('Cat', 'Purrs a lot, chases mice');
+      shoppinglist3.addItem(testListItem);
+      (shoppinglist3.items).indexOf(testListItem).should.not.be.equal(-1);
+    });
+
+    it(`the 'addItem' method should throw an error if passed an object that is not a ShoppingListItem`, function(){
+      var badCall = function () {
+        shoppinglist3.addItem(7);
+      };
+      badCall.should.throw(Error);
+      var badCall2 = function () {
+        shoppinglist3.addItem({name:'Cat', description:'Purrs a lot, chases mice'});
+      };
+      badCall2.should.throw(Error);
+    });
+    //end of addItem tests
   });
+  describe('removeItem', function(){
+    it(`'ShoppingList' should have a method named 'removeItem'`, function() {
+      (shoppinglist.removeItem).should.be.a.function;
+    });
 
-  it(`passing the addItem method a ShoppingListItem object should add that object to the items array`, function() {
-    var shoppinglist3 = new ShoppingList();
-    var badCall = function () {
-      shoppinglist3.addItem(7);
-    };
-    badCall.should.throw(Error);
-    var badCall2 = function () {
-      shoppinglist3.addItem({name:'Cat', description:'Purrs a lot, chases mice'});
-    };
-    badCall2.should.throw(Error);
-    var testListItem = new ShoppingListItem('Cat', 'Purrs a lot, chases mice');
-    shoppinglist3.addItem(testListItem);
-    console.log('shoppinglist3.items.length: ', shoppinglist3.items.length);
-    console.log('(shoppinglist3.items).indexOf[testListItem]: ', (shoppinglist3.items).indexOf(testListItem));
+
+  //end of removeItem tests
   });
-
-
-
-
-
 });
