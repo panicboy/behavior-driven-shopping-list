@@ -1,15 +1,24 @@
 function ShoppingList(){
   this._items = [];
-  var shoppingListItemProperties = ["name", "description", "is_done", "check", "uncheck", "render"];
+
   function _addItem(theItem){
-    var itemProperties = Object.getOwnPropertyNames(theItem);
-    var propertyMatch = itemProperties.every(function(el, i, a) {
-      return shoppingListItemProperties.indexOf(el) >= 0;
-      });
-    if(propertyMatch) this.items.push(theItem);
+    if(!isShoppingListItem(theItem)) {
+      throw Error("not a ShoppingListItem.");
+    } else {
+      this.items.push(theItem);
+    }
   }
 
-  var toClass = {}.toString;
+  function isShoppingListItem(theItem){
+    var itemProperties = Object.getOwnPropertyNames(theItem);
+    var propertyMatch = true;
+    var testProperties = [ 'name', 'description', 'is_done', 'check', 'uncheck', 'render' ];
+    for (var i = 0; i <= testProperties.length - 1; i++) {
+      if(testProperties[i] != itemProperties[i]) propertyMatch = false;
+    }
+    return propertyMatch;
+  }
+
 
   function _removeItem(theItem){
 
@@ -20,3 +29,4 @@ function ShoppingList(){
     addItem: _addItem
   };
 }
+

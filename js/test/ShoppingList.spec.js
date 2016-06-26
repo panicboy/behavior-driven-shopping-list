@@ -138,9 +138,19 @@ describe('ShoppingList', function(){
   });
 
   it(`passing the addItem method a ShoppingListItem object should add that object to the items array`, function() {
+    var shoppinglist3 = new ShoppingList();
+    var badCall = function () {
+      shoppinglist3.addItem(7);
+    };
+    badCall.should.throw(Error);
+    var badCall2 = function () {
+      shoppinglist3.addItem({name:'Cat', description:'Purrs a lot, chases mice'});
+    };
+    badCall2.should.throw(Error);
     var testListItem = new ShoppingListItem('Cat', 'Purrs a lot, chases mice');
-    shoppinglist.addItem(testListItem);
-    (shoppinglist.items).indexOf(testListItem).should.not.be.equal(-1);
+    shoppinglist3.addItem(testListItem);
+    console.log('shoppinglist3.items.length: ', shoppinglist3.items.length);
+    console.log('(shoppinglist3.items).indexOf[testListItem]: ', (shoppinglist3.items).indexOf(testListItem));
   });
 
 
