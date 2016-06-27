@@ -18,10 +18,11 @@ describe('ShoppingListItem', function(){
 
   it('should be a Class definition', function() {
     ShoppingListItem.should.be.a.function;
+    shoppinglistitem.should.be.an.instanceOf(ShoppingListItem);
   });
 
   it('should return an object literal when invoked', function () {
-    (ShoppingListItem()).should.be.an('object');
+    shoppinglistitem.should.be.an('object');
   });
 
   it(`should have a property 'name'`, function() {
@@ -37,44 +38,48 @@ describe('ShoppingListItem', function(){
   });
 
   //start of shoppingListItem method tests
+  describe('check', function(){
+    it(`ShoppingListItem should have a method 'check' available on a new Shopping List Item object`, function () {
+      (shoppinglistitem.check).should.be.a.function;
+    });
 
-  it(`should have a method 'check' available on a new Shopping List Item object`, function () {
-    (shoppinglistitem.check).should.be.a.function;
+    it(`the 'check' method should set 'is_done' to 'true'`, function () {
+      shoppinglistitem.check();
+      shoppinglistitem.is_done.should.be.equal(true);
+    });
   });
 
-  it(`the 'check' method should set 'is_done' to 'true'`, function () {
-    shoppinglistitem.check();
-    shoppinglistitem.is_done.should.be.equal(true);
+  describe('uncheck', function(){
+    it(`should have a method 'uncheck' available on a new Shopping List Item object`, function () {
+      (shoppinglistitem.uncheck).should.be.a.function;
+    });
+     it(`the 'uncheck' method should set 'is_done' to 'false'`, function () {
+      shoppinglistitem.check();
+      shoppinglistitem.is_done.should.be.equal(true);
+      shoppinglistitem.uncheck();
+      shoppinglistitem.is_done.should.be.equal(false);
+    });
   });
 
-  it(`should have a method 'uncheck' available on a new Shopping List Item object`, function () {
-    (shoppinglistitem.uncheck).should.be.a.function;
-  });
-
-   it(`the 'uncheck' method should set 'is_done' to 'false'`, function () {
-    shoppinglistitem.check();
-    shoppinglistitem.is_done.should.be.equal(true);
-    shoppinglistitem.uncheck();
-    shoppinglistitem.is_done.should.be.equal(false);
-  });
-
+  describe('render', function(){
   it(`should have a method 'render' available on a new Shopping List Item object`, function () {
     (shoppinglistitem.render).should.be.a.function;
   });
 
-  it(`the'render' method should return an HTML-formatted string wrapped in quotes`, function () {
-    var renderedString = shoppinglistitem.render();
-    renderedString.should.be.a.string;
-    (renderedString.startsWith(`"<li class`)).should.be.equal(true);
-    (renderedString.endsWith(`/li>"`)).should.be.equal(true);
-    (renderedString.includes('<span>Fish</span>')).should.be.equal(true);
-    (renderedString.includes(`<span>A lovely but dangerous goldfish.</span>`)).should.be.equal(true);
-    (renderedString.includes(`"completed_false"`)).should.be.equal(true);
-  });
+    it(`the'render' method should return an HTML-formatted string wrapped in quotes`, function () {
+      var renderedString = shoppinglistitem.render();
+      renderedString.should.be.a.string;
+      (renderedString.startsWith(`"<li class`)).should.be.equal(true);
+      (renderedString.endsWith(`/li>"`)).should.be.equal(true);
+      (renderedString.includes('<span>Fish</span>')).should.be.equal(true);
+      (renderedString.includes(`<span>A lovely but dangerous goldfish.</span>`)).should.be.equal(true);
+      (renderedString.includes(`"completed_false"`)).should.be.equal(true);
+    });
 
-  it(`the'render' method should return a multiline string`, function () {
-    var renderedString = shoppinglistitem.render();
-    (renderedString.split("\n").length).should.be.equal(4);
+    it(`the'render' method should return a multiline string`, function () {
+      var renderedString = shoppinglistitem.render();
+      (renderedString.split("\n").length).should.be.equal(4);
+    });
   });
 
   it(`a different ShoppingListItem instance should have a property 'name' with a distinct value`, function() {
@@ -115,10 +120,11 @@ describe('ShoppingList', function(){
 
   it('should be a Class definition', function() {
     ShoppingList.should.be.a.function;
+    shoppinglist.should.be.an.instanceOf(ShoppingList);
   });
 
   it('should return an object literal when invoked', function () {
-    (ShoppingList()).should.be.an('object');
+    shoppinglist.should.be.an('object');
   });
 
   it(`should have a property 'items'`, function() {
@@ -163,6 +169,13 @@ describe('ShoppingList', function(){
   describe('removeItem', function(){
     it(`'ShoppingList' should have a method named 'removeItem'`, function() {
       (shoppinglist.removeItem).should.be.a.function;
+    });
+    it(`'removeItem' should accept a single ShoppingListItem argument`, function() {
+      var testListItem4 = new ShoppingListItem('rock', `it's just a rock.`);
+      shoppinglist.addItem(testListItem4);
+      (shoppinglist.items).indexOf(testListItem4).should.not.be.equal(-1);
+      shoppinglist.removeItem(testListItem4);
+      (shoppinglist.items).indexOf(testListItem4).should.be.equal(-1);
     });
 
 

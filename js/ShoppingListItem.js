@@ -1,33 +1,21 @@
 function ShoppingListItem(name, description) {
-  this._name = name;
-  this._description = description;
-  var is_done = false;
-  var renderString  = `"<li class="completed_is_done">
-  <span>_name_</span>
-  <span>_description_</span>
-</li>"`;
+  this.name = name;
+  this.description = description;
+  this.is_done = false;
 
-  function _check (){
+  this.check = function (){
     this.is_done = true;
-  }
-
-  function _uncheck (){
-    this.is_done = false;
-  }
-
-function _render(){
-  var itemString = renderString.replace('is_done',is_done);
-  itemString = itemString.replace('_name_',this.name);
-  itemString = itemString.replace('_description_',this.description);
-  return itemString;
-}
-
-  return {
-    name: this._name,
-    description: this._description,
-    is_done: is_done,
-    check: _check,
-    uncheck: _uncheck,
-    render: _render
   };
+
+  this.uncheck = function(){
+    this.is_done = false;
+  };
+
+  this.render = function(){
+    return `"<li class="completed_${this.is_done}">
+  <span>${this.name}</span>
+  <span>${this.description}</span>
+</li>"`;
+  };
+
 }
