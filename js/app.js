@@ -10,7 +10,14 @@ function add_to_shopping_list(){
     var new_shopping_list_item = new ShoppingListItem(itemName, itemDescription);
     myShoppingList.addItem(new_shopping_list_item);
     content.innerHTML = myShoppingList.render();
-
+    titleBox.value = '';
+    descripBox.value = '';
+    titleBox.focus();
   }
-  // var theShoppingList = new ShoppingList();
+}
+
+function changeCheckedStatus(theId, isChecked) {
+  if(isChecked) myShoppingList.items[theId].check();
+  if(!isChecked) myShoppingList.items[theId].uncheck();
+  console.log('myShoppingList.items[theId].is_done: ', myShoppingList.items[theId].is_done);
 }

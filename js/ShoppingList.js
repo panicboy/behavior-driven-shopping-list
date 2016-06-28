@@ -5,7 +5,8 @@ function ShoppingList(){
     if(!(theItem instanceof ShoppingListItem)) {
       throw Error("not a ShoppingListItem.");
     } else {
-      this.items.push(theItem);
+      if(this.items.indexOf(theItem) < 0) this.items.push(theItem);
+
     }
   };
 

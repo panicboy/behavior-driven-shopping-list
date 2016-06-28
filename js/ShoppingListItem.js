@@ -13,9 +13,12 @@ function ShoppingListItem(name, description) {
 
   this.render = function(){
     return `<li class="completed_${this.is_done}">
-  <label><input type="checkbox" id="idx"><span>${this.name}</span></label><br>
+  <span>${this.name}</span>
   <span>${this.description}</span>
+  <input type="checkbox" id="idx" onchange="changeCheckedStatus(this.id, this.checked)"></input>
 </li>`;
+// return `<li class=“completed_${this.is_done}">\n<span>${this.name}</span>\n<span>${
+// this.description}</span><input class="checkboxes" type="checkbox"></input><input class="removebuttons" value = "x" type="submit"></input></li>`;
   };
 
 }
