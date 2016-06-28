@@ -232,4 +232,14 @@ describe('ShoppingList', function(){
 
   }); //end of render tests
 
-});
+}); //end of ShoppingList tests
+
+describe('Web page', function(){
+  beforeEach(function() {
+  var content = document.getElementById('content');
+  var descripBox = document.getElementById('descripBox');
+  var titleBox = document.getElementById('titleBox');
+  });
+
+}); //end of Web page tests
+

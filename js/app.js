@@ -22,6 +22,8 @@ function changeCheckedStatus(idx, checkbox) {
 }
 
 function removeItemButtonClicked(idx){
-  myShoppingList.removeItem(myShoppingList.items[idx]);
-  content.innerHTML = myShoppingList.render();
+  if(confirm("Really delete this item?")) {
+    myShoppingList.removeItem(myShoppingList.items[idx]);
+    content.innerHTML = myShoppingList.render();
+  }
 }
