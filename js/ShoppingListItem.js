@@ -12,10 +12,10 @@ function ShoppingListItem(name, description) {
   };
 
   this.render = function(){
-    return String(`<li class="completed_${this.is_done}">
-  <span>${this.name}</span><br>
+    return `<li class="completed_${this.is_done}">
+  <span><label><input type="checkbox" id="idx">${this.name}</label></span><br>
   <span>${this.description}</span>
-</li>`);
+</li>`;
   };
 
 }

@@ -24,7 +24,7 @@ function ShoppingList(){
     `;
     if(this.items.length === 0) return '';
     for (var i = 0; i <= this.items.length - 1; i++) {
-      var renderedItem = this.items[i].render();
+      var renderedItem = (this.items[i].render()).replace("idx", String(i));
       theList +=`${renderedItem}
       `;
     }
