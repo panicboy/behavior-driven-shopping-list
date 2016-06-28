@@ -25,16 +25,24 @@ describe('ShoppingListItem', function(){
     shoppinglistitem.should.be.an('object');
   });
 
-  it(`should have a property 'name'`, function() {
-    shoppinglistitem.name.should.be.equal('Fish');
+  describe('name', function(){
+    it(`should have a property 'name'`, function() {
+      shoppinglistitem.name.should.be.equal('Fish');
+      shoppinglistitem2.name.should.be.equal('Dog');
+    });
   });
 
-  it(`should have a property 'description'`, function() {
-    shoppinglistitem.description.should.be.equal('A lovely but dangerous goldfish.');
+  describe('description', function(){
+    it(`should have a property 'description'`, function() {
+      shoppinglistitem.description.should.be.equal('A lovely but dangerous goldfish.');
+      shoppinglistitem2.description.should.be.equal(`Says 'Woof!'`);
+    });
   });
 
-  it(`should have a property 'is_done'`, function() {
-    shoppinglistitem.is_done.should.be.equal(false);
+  describe('is_done', function(){
+    it(`should have a property 'is_done'`, function() {
+      shoppinglistitem.is_done.should.be.equal(false);
+    });
   });
 
   //start of shoppingListItem method tests
@@ -47,7 +55,7 @@ describe('ShoppingListItem', function(){
       shoppinglistitem.check();
       shoppinglistitem.is_done.should.be.equal(true);
     });
-  });
+  }); //end of shoppingListItem check tests
 
   describe('uncheck', function(){
     it(`should have a method 'uncheck' available on a new Shopping List Item object`, function () {
@@ -59,12 +67,12 @@ describe('ShoppingListItem', function(){
       shoppinglistitem.uncheck();
       shoppinglistitem.is_done.should.be.equal(false);
     });
-  });
+  }); //end of shoppingListItem uncheck tests
 
   describe('render', function(){
-  it(`should have a method 'render' available on a new Shopping List Item object`, function () {
-    (shoppinglistitem.render).should.be.a.function;
-  });
+    it(`should have a method 'render' available on a new Shopping List Item object`, function () {
+      (shoppinglistitem.render).should.be.a.function;
+    });
 
     it(`the'render' method should return an HTML-formatted string wrapped in quotes`, function () {
       var renderedString = shoppinglistitem.render();
@@ -80,7 +88,9 @@ describe('ShoppingListItem', function(){
       var renderedString = shoppinglistitem.render();
       (renderedString.split("\n").length).should.be.equal(4);
     });
-  });
+
+  }); //end of shoppingListItem render tests
+  //end of shoppingListItem method tests
 
   it(`a different ShoppingListItem instance should have a property 'name' with a distinct value`, function() {
     shoppinglistitem.name.should.be.equal('Fish');
@@ -103,7 +113,7 @@ describe('ShoppingListItem', function(){
     (renderedString2.includes(`<span>Says 'Woof!'</span>`)).should.be.equal(true);
     (renderedString == renderedString2).should.be.equal(false);
   });
-  //end of shoppingListItem method tests
+
 //end of shoppingListItem tests
 });
 
@@ -113,9 +123,16 @@ describe('ShoppingList', function(){
   var shoppinglist2;
   var shoppinglistitem;
   var shoppinglistitem2;
+  var emptyShoppingList;
+  var shoppinglistitem3;
 
   beforeEach(function() {
   shoppinglist = new ShoppingList();
+  shoppinglist2 = new ShoppingList();
+  emptyShoppingList = new ShoppingList();
+  shoppinglistitem = new ShoppingListItem('Cat', 'Purrs, chases mice');
+  shoppinglistitem2 = new ShoppingListItem('Mouse', 'Eats cheese, squeaks');
+  shoppinglistitem3 = new ShoppingListItem('TV', `You can watch 'Game of Thrones' on it.`);
   });
 
   it('should be a Class definition', function() {
@@ -137,48 +154,79 @@ describe('ShoppingList', function(){
 
   it(`'items' should be empty`, function() {
     (shoppinglist.items).should.be.empty;
-  });
+  }); // end of basic ShoppingList tests
 
   describe('addItem', function(){
-    beforeEach(function() {
-      shoppinglist3 = new ShoppingList();
-    });
 
     it(`'ShoppingList' should have a method named 'addItem'`, function() {
-      (shoppinglist3.addItem).should.be.a.function;
+      (shoppinglist.addItem).should.be.a.function;
     });
 
     it(`the 'addItem' method should accept a ShoppingListItem object and add it to the items array`, function() {
-      var testListItem = new ShoppingListItem('Cat', 'Purrs a lot, chases mice');
-      shoppinglist3.addItem(testListItem);
-      (shoppinglist3.items).indexOf(testListItem).should.not.be.equal(-1);
+      shoppinglist.addItem(shoppinglistitem);
+      (shoppinglist.items).indexOf(shoppinglistitem).should.not.be.equal(-1);
     });
 
     it(`the 'addItem' method should throw an error if passed an object that is not a ShoppingListItem`, function(){
       var badCall = function () {
-        shoppinglist3.addItem(7);
+        shoppinglist.addItem(7);
       };
       badCall.should.throw(Error);
       var badCall2 = function () {
-        shoppinglist3.addItem({name:'Cat', description:'Purrs a lot, chases mice'});
+        shoppinglist.addItem({name:'Cat', description:'Purrs a lot, chases mice'});
       };
       badCall2.should.throw(Error);
     });
-    //end of addItem tests
-  });
+  }); //end of addItem tests
   describe('removeItem', function(){
     it(`'ShoppingList' should have a method named 'removeItem'`, function() {
       (shoppinglist.removeItem).should.be.a.function;
     });
+
     it(`'removeItem' should accept a single ShoppingListItem argument`, function() {
-      var testListItem4 = new ShoppingListItem('rock', `it's just a rock.`);
-      shoppinglist.addItem(testListItem4);
-      (shoppinglist.items).indexOf(testListItem4).should.not.be.equal(-1);
-      shoppinglist.removeItem(testListItem4);
-      (shoppinglist.items).indexOf(testListItem4).should.be.equal(-1);
+      shoppinglist.addItem(shoppinglistitem3);
+      (shoppinglist.items).indexOf(shoppinglistitem3).should.not.be.equal(-1);
+      (shoppinglist2.items).indexOf(shoppinglistitem3).should.be.equal(-1);
+      shoppinglist.removeItem(shoppinglistitem3);
+      (shoppinglist.items).indexOf(shoppinglistitem3).should.be.equal(-1);
+    });
+  }); //end of removeItem tests
+
+  describe('render', function(){
+
+  it(`ShoppingList should have a method 'render' available on a new Shopping List object`, function () {
+    (shoppinglist.render).should.be.a.function;
+  });
+
+  describe('render results', function(){
+    beforeEach(function() {
+    shoppinglist.addItem(shoppinglistitem);
+    shoppinglist2.addItem(shoppinglistitem);
+    shoppinglist2.addItem(shoppinglistitem2);
+    shoppinglist2.addItem(shoppinglistitem3);
+    var shoppingListRender;
+    var shoppingList2Render;
+    var listItemRender;
+    var listItem2Render;
+    var listItem3Render;
+  });
+
+    it(`ShoppingList 'render' results should contain the items in Shoppinglist.items`, function () {
+      listItemRender = shoppinglistitem.render();
+      listItem2Render = shoppinglistitem2.render();
+      listItem3Render = shoppinglistitem3.render();
+      shoppingListRender = shoppinglist.render();
+      shoppingList2Render = shoppinglist2.render();
+      expect(shoppingListRender).to.contain(listItemRender);
+      expect(shoppingList2Render).to.contain(listItem3Render);
+      expect(shoppingListRender).to.not.contain(listItem3Render);
+      expect(shoppingListRender).to.not.contain(listItem2Render);
     });
 
+  }); //end of render results tests
 
-  //end of removeItem tests
-  });
+
+
+  }); //end of render tests
+
 });

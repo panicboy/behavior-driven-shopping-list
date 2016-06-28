@@ -19,5 +19,17 @@ function ShoppingList(){
     }
   };
 
+  this.render = function() {
+    var theList = String;
+    for (var i = 0; i <= this.items.length - 1; i++) {
+      var renderedItem = this.items[i].render();
+      theList += `<ul>
+  ${renderedItem}
+</ul>
+`;
+    }
+    return theList;
+  };
+
 }
 
