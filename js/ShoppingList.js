@@ -20,15 +20,15 @@ function ShoppingList(){
   };
 
   this.render = function() {
-    var theList = String;
+    var theList = `<ul>
+    `;
+    if(this.items.length === 0) return '';
     for (var i = 0; i <= this.items.length - 1; i++) {
       var renderedItem = this.items[i].render();
-      theList += `<ul>
-  ${renderedItem}
-</ul>
-`;
+      theList +=`${renderedItem}
+      `;
     }
-    return theList;
+    return theList + '</ul>';
   };
 
 }

@@ -74,14 +74,14 @@ describe('ShoppingListItem', function(){
       (shoppinglistitem.render).should.be.a.function;
     });
 
-    it(`the'render' method should return an HTML-formatted string wrapped in quotes`, function () {
+    it(`the'render' method should return an HTML-formatted string`, function () {
       var renderedString = shoppinglistitem.render();
       renderedString.should.be.a.string;
-      (renderedString.startsWith(`"<li class`)).should.be.equal(true);
+      (renderedString.startsWith(`<li class`)).should.be.equal(true);
       (renderedString.endsWith(`/li>"`)).should.be.equal(true);
       (renderedString.includes('<span>Fish</span>')).should.be.equal(true);
       (renderedString.includes(`<span>A lovely but dangerous goldfish.</span>`)).should.be.equal(true);
-      (renderedString.includes(`"completed_false"`)).should.be.equal(true);
+      (renderedString.includes(`"completed_false`)).should.be.equal(true);
     });
 
     it(`the'render' method should return a multiline string`, function () {
