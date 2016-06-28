@@ -77,11 +77,11 @@ describe('ShoppingListItem', function(){
     it(`the'render' method should return an HTML-formatted string`, function () {
       var renderedString = shoppinglistitem.render();
       renderedString.should.be.a.string;
-      (renderedString.startsWith(`<li class`)).should.be.equal(true);
-      (renderedString.endsWith(`/li>"`)).should.be.equal(true);
-      (renderedString.includes('<span>Fish</span>')).should.be.equal(true);
-      (renderedString.includes(`<span>A lovely but dangerous goldfish.</span>`)).should.be.equal(true);
-      (renderedString.includes(`"completed_false`)).should.be.equal(true);
+      (renderedString.startsWith('<li class')).should.be.equal(true);
+      (renderedString.endsWith('/li>')).should.be.equal(true);
+      ((renderedString.includes('<span>')) && (renderedString.includes('Fish'))).should.be.equal(true);
+      ((renderedString.includes('</span>')) && (renderedString.includes('A lovely but dangerous goldfish.'))).should.be.equal(true);
+      (renderedString.includes('completed_false')).should.be.equal(true);
     });
 
     it(`the'render' method should return a multiline string`, function () {
@@ -106,11 +106,10 @@ describe('ShoppingListItem', function(){
     var renderedString = shoppinglistitem.render();
     var renderedString2 = shoppinglistitem2.render();
     renderedString2.should.be.a.string;
-    (renderedString.includes('<span>Fish</span>')).should.be.equal(true);
-    (renderedString2.startsWith(`"<li class`)).should.be.equal(true);
-    (renderedString2.endsWith(`/li>"`)).should.be.equal(true);
-    (renderedString2.includes('<span>Dog</span>')).should.be.equal(true);
-    (renderedString2.includes(`<span>Says 'Woof!'</span>`)).should.be.equal(true);
+    (renderedString2.startsWith('<li class')).should.be.equal(true);
+    (renderedString2.endsWith('/li>')).should.be.equal(true);
+    ((renderedString2.includes('<span>')) && (renderedString2.includes('Dog'))).should.be.equal(true);
+    ((renderedString2.includes('</span>')) && (renderedString2.includes(`Says 'Woof!'`))).should.be.equal(true);
     (renderedString == renderedString2).should.be.equal(false);
   });
 
@@ -212,9 +211,9 @@ describe('ShoppingList', function(){
   });
 
     it(`ShoppingList 'render' results should contain the items in Shoppinglist.items`, function () {
-      listItemRender = shoppinglistitem.render();
-      listItem2Render = shoppinglistitem2.render();
-      listItem3Render = shoppinglistitem3.render();
+      listItemRender = (shoppinglistitem.render()).replace('idx', '0');
+      listItem2Render = (shoppinglistitem2.render()).replace('idx', '1');
+      listItem3Render = (shoppinglistitem3.render()).replace('idx', '2');
       shoppingListRender = shoppinglist.render();
       shoppingList2Render = shoppinglist2.render();
       expect(shoppingListRender).to.contain(listItemRender);

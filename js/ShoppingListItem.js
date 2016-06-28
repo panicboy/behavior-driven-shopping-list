@@ -13,7 +13,7 @@ function ShoppingListItem(name, description) {
 
   this.render = function(){
     return `<li class="completed_${this.is_done}">
-  <span><label><input type="checkbox" id="idx">${this.name}</label></span><br>
+  <label><input type="checkbox" id="idx"><span>${this.name}</span></label><br>
   <span>${this.description}</span>
 </li>`;
   };
