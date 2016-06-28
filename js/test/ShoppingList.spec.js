@@ -86,7 +86,7 @@ describe('ShoppingListItem', function(){
 
     it(`the'render' method should return a multiline string`, function () {
       var renderedString = shoppinglistitem.render();
-      (renderedString.split("\n").length).should.be.equal(4);
+      (renderedString.split("\n").length).should.be.above(3);
     });
 
   }); //end of shoppingListItem render tests
@@ -211,20 +211,24 @@ describe('ShoppingList', function(){
   });
 
     it(`ShoppingList 'render' results should contain the items in Shoppinglist.items`, function () {
-      listItemRender = (shoppinglistitem.render()).replace('idx', '0');
-      listItem2Render = (shoppinglistitem2.render()).replace('idx', '1');
-      listItem3Render = (shoppinglistitem3.render()).replace('idx', '2');
+      listItemRender = (shoppinglistitem.render()).replace('idx', '0').split("\n");
+      listItem2Render = (shoppinglistitem2.render()).replace('idx', '1').split("\n");
+      listItem3Render = (shoppinglistitem3.render()).replace('idx', '2').split("\n");
       shoppingListRender = shoppinglist.render();
       shoppingList2Render = shoppinglist2.render();
-      expect(shoppingListRender).to.contain(listItemRender);
-      expect(shoppingList2Render).to.contain(listItem3Render);
-      expect(shoppingListRender).to.not.contain(listItem3Render);
-      expect(shoppingListRender).to.not.contain(listItem2Render);
+      expect(shoppingListRender).to.contain(listItemRender[0]);
+      expect(shoppingListRender).to.contain(listItemRender[1]);
+      expect(shoppingListRender).to.contain(listItemRender[2]);
+      expect(shoppingList2Render).to.contain(listItem3Render[0]);
+      expect(shoppingList2Render).to.contain(listItem3Render[1]);
+      expect(shoppingList2Render).to.contain(listItem3Render[2]);
+      expect(shoppingListRender).to.not.contain(listItem3Render[1]);
+      expect(shoppingListRender).to.not.contain(listItem3Render[2]);
+      expect(shoppingListRender).to.not.contain(listItem2Render[1]);
+      expect(shoppingListRender).to.not.contain(listItem2Render[2]);
     });
 
   }); //end of render results tests
-
-
 
   }); //end of render tests
 
