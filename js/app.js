@@ -16,8 +16,12 @@ function add_to_shopping_list(){
   }
 }
 
-function changeCheckedStatus(theId, isChecked) {
-  if(isChecked) myShoppingList.items[theId].check();
-  if(!isChecked) myShoppingList.items[theId].uncheck();
-  console.log('myShoppingList.items[theId].is_done: ', myShoppingList.items[theId].is_done);
+function changeCheckedStatus(idx, checkbox) {
+  if(checkbox) myShoppingList.items[idx].check();
+  if(!checkbox) myShoppingList.items[idx].uncheck();
+}
+
+function removeItemButtonClicked(idx){
+  myShoppingList.removeItem(myShoppingList.items[idx]);
+  content.innerHTML = myShoppingList.render();
 }

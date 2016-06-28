@@ -25,12 +25,12 @@ function ShoppingList(){
     `;
     if(this.items.length === 0) return '';
     for (var i = 0; i <= this.items.length - 1; i++) {
-      var renderedItem = (this.items[i].render()).replace("idx", String(i));
-      theList +=`${renderedItem}
+      var checkBoxIdSet = (this.items[i].render()).replace("idx", String(i));
+      var removeButtonIdSet = checkBoxIdSet.replace('idx2', String(i));
+      theList +=`${removeButtonIdSet}
       `;
     }
     return theList + '</ul>';
   };
-
 }
 
